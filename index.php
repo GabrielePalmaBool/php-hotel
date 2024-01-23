@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>`php-hotel`</title>
+    <title>php-hotel</title>
 </head>
 <body>
     
+
 <?php
 
 $hotels = [
@@ -48,6 +49,16 @@ $hotels = [
 	],
 
 ];
+
+
+foreach ($hotels as $key => $value) {
+    
+    // Stampo in pagina le informazioni senza curarmi del layout
+    echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio: '.$value["parking"].'<br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
+   
+    echo '<br>----------------------------------------------------------------<br>';
+}
+
 ?>
 </body>
 </html>
