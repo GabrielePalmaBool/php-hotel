@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
      <!-- Link css Bootstrap-->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     
      <!-- Link css style-->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css\style.css">
  
     <title>php-hotel</title>
 </head>
-<body class="container">
-    
-
+<body class="container" >
 <?php
 
 $hotels = [
@@ -57,15 +55,22 @@ $hotels = [
 
 ];
 
-
-foreach ($hotels as $key => $value) {
-    
-    // Stampo in pagina le informazioni senza curarmi del layout
-    echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio: '.$value["parking"].'<br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
-   
-    echo '<br>----------------------------------------------------------------<br>';
-}
-
 ?>
+<ul class="row">
+    <li>
+        <?php 
+            foreach ($hotels as $key => $value) {
+                
+                // Stampo in pagina le informazioni senza curarmi del layout
+                echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio: '.$value["parking"].'<br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
+            
+                echo '<br>----------------------------------------------------------------<br>';
+            }
+                    
+        ?>
+    </li>
+</ul>
+
+
 </body>
 </html>
