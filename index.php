@@ -34,7 +34,7 @@ $hotels = [
 	[
 		'name' => 'Hotel Rivamare',
 		'description' => 'Hotel Rivamare Descrizione',
-		'parking' => false,
+		'parking' => true,
 		'vote' => 1,
 		'distance_to_center' => 1
 	],
@@ -48,7 +48,7 @@ $hotels = [
 	[
 		'name' => 'Hotel Milano',
 		'description' => 'Hotel Milano Descrizione',
-		'parking' => true,
+		'parking' => false,
 		'vote' => 2,
 		'distance_to_center' => 50
 	],
@@ -86,7 +86,7 @@ $hotels = [
                 // Recupera i valori di $_GET['park'] e $_GET['vote'] 
                 $park = $_GET['park'] ?? 'nobody';
                 $vote = $_GET['vote'] ?? 'nobody';
-        
+            
 
                 //se non c'è alcun valore
                 if($park == 'nobody' && $vote == 'nobody' || $park == '' && $vote == '' ){
@@ -111,7 +111,7 @@ $hotels = [
                         
                         foreach ($hotels as $key => $value) {
     
-                            if($value["parking"] == $park){
+                            if($value["parking"] == true && $park == 'yes' ){
         
                                 // Stampo in pagina le informazioni senza curarmi del layout
                                 echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:si <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
@@ -119,23 +119,36 @@ $hotels = [
                                 echo '<br>----------------------------------------------------------------<br>';
     
                             }
+                            else if($value["parking"] == false && $park == 'no' ) {
+                                // Stampo in pagina le informazioni senza curarmi del layout
+                                echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:no <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
+                        
+                                echo '<br>----------------------------------------------------------------<br>';
+                            }
     
                         }
                     }
                     // Secondo caso
-                    else if($park == '' && $vote == ''){
+                    else if($park == '' && $vote !== ''){
 
                         echo '<h2> con: '.$vote.' stelle</h2>';
 
                         foreach ($hotels as $key => $value) {
     
-                            if( $value["vote"] == $vote ){
+                            if( $value["vote"] == $vote  && $value["parking"] == true){
         
                                 // Stampo in pagina le informazioni senza curarmi del layout
                                 echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:si <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
                         
                                 echo '<br>----------------------------------------------------------------<br>';
     
+                            }
+                            else if ($value["vote"] == $vote  && $value["parking"] == false) {
+                                  // Stampo in pagina le informazioni senza curarmi del layout
+                                  echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:no <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
+                        
+                                  echo '<br>----------------------------------------------------------------<br>';
+      
                             }
 
                         }
@@ -149,22 +162,9 @@ $hotels = [
                
                         foreach ($hotels as $key => $value) {
     
-                            if($park == 'yes' && $value["parking"] == true){
-        
-                                if( $value["vote"] == $vote ){
-        
-                                    // Stampo in pagina le informazioni senza curarmi del layout
-                                    echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:si <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
-                            
-                                    echo '<br>----------------------------------------------------------------<br>';
-        
-                                }
-    
-                            }
-    
-                            else if($value["parking"] == false){
-    
-                                if( $value["vote"] == $vote ){
+                            if($park === 'yes'){
+                               
+                                if( $value["parking"] == true && $value["vote"] == $vote ){
         
                                     // Stampo in pagina le informazioni senza curarmi del layout
                                     echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:si <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
@@ -172,7 +172,23 @@ $hotels = [
                                     echo '<br>----------------------------------------------------------------<br>';
         
                                 }
+                                
+    
                             }
+    
+                            else if($park === 'no'){
+            
+                                if( $value["parking"] == false && $value["vote"] == $vote ){
+        
+                                    // Stampo in pagina le informazioni senza curarmi del layout
+                                    echo '<br >Nome: '.$value["name"].'<br>'.'Descrizione: '.$value["description"].'<br>'.'Parcheggio:no <br>'.'Voto: '.$value["vote"].'<br>'.'Distanza dal centro: '.$value["distance_to_center"].'<br>';
+                            
+                                    echo '<br>----------------------------------------------------------------<br>';
+        
+                                }
+                            }
+
+
     
                         }
                     }
