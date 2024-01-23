@@ -5,11 +5,13 @@
   box-sizing: border-box;
 }
 
-ul {
-  list-style-type: none;
-  background-color: red;
+body {
+  text-align: center;
 }
 
-li {
-  justify-content: center;
+ul {
+  list-style-type: none;
+}
+body h1 {
+  color: red;
 }
